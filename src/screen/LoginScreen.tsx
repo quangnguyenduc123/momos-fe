@@ -18,6 +18,7 @@ const LoginScreen: React.FC = () => {
             message.success('Login successful!');
             navigate('/dashboard');
         } catch (error) {
+            console.log(error);
             setError('Invalid username or password. Please try again.');
         } finally {
             setLoading(false);
@@ -29,6 +30,11 @@ const LoginScreen: React.FC = () => {
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                 <Card style={{ width: 400 }}>
                     <Title level={2} style={{ textAlign: 'center', marginBottom: 30 }}>Login</Title>
+                    {error && ( // Display error message if it exists
+                    <div style={{ color: 'red', marginBottom: 16, textAlign: 'center' }}>
+                        {error}
+                    </div>
+                )}
                     <Form
                         name="login"
                         initialValues={{ remember: true }}
